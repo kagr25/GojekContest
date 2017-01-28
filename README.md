@@ -1,3 +1,3 @@
 # GojekContest
 
-# Run the command from the console: ruby play.rb
+# Run command from the console: ruby play.rb

@@ -5,7 +5,7 @@ class Game
     @deck = Deck.new
     @player_hand = Hand.new
     @dealer_hand = Hand.new
-    @@winner = nil
+    @winner = nil
     2.times { @player_hand.hit!(@deck) }
     2.times { @dealer_hand.hit!(@deck) }
     puts "Intial hand status: #{after_hit_status}"
