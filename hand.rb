@@ -13,11 +13,19 @@ class Hand
   end
 
   def value
-    @cards.inject(0) {|sum, card| sum += card.value }
+    value_11_a > 21 ? value_1_a : value_11_a
+  end
+
+  def value_1_a
+    @cards.inject(0) {|sum, card| sum += card.value(1) }
+  end
+
+  def value_11_a
+    @cards.inject(0) {|sum, card| sum += card.value(11) }
   end
 
   def play_as_dealer(deck)
-    if value < 17
+    if value_11_a < 17 || value_1_a < 17
       hit!(deck)
       play_as_dealer(deck)
     end
