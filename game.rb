@@ -8,21 +8,21 @@ class Game
     @winner = nil
     2.times { @player_hand.hit!(@deck) }
     2.times { @dealer_hand.hit!(@deck) }
-    puts "Intial hand status: #{after_hit_status}"
+    puts "Intial hand status:" + "#{after_hit_status}".blue
   end
 
   def hit
     @player_hand.hit!(@deck)
     @winner = winner_after_hit(@player_hand.value)
     status = @winner.nil? ? after_hit_status : after_stand_status
-    puts "After hit hand status: #{status}"
+    puts "After hit hand status: " + "#{status}".blue
   end
 
   def stand
     return if !@winner.nil?
     @dealer_hand.play_as_dealer(@deck)
     @winner = decide_winner(@player_hand.value, @dealer_hand.value)
-    puts "After stand hand status: #{after_stand_status}"
+    puts "After stand hand status: " + "#{after_stand_status}".blue
   end
 
   def after_stand_status
@@ -36,6 +36,7 @@ class Game
   def after_hit_status
     {:player_cards=> @player_hand.cards,
      :player_value => @player_hand.value,
+     :dealer_visible_card => @dealer_hand.cards.first,
      :winner => @winner}
   end
 
@@ -53,6 +54,7 @@ class Game
 
   def winner_after_hit(player_value)
     return :dealer if player_value > 21
+    return :player if player_value == 21
     return nil
   end
 

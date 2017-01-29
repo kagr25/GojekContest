@@ -2,11 +2,12 @@ require_relative "card"
 require_relative "deck"
 require_relative "hand"
 require_relative "game"
+require 'colorize'
 
 class Play
 
   def initialize
-    puts "Enter 1 for Hit, 2 for Stand"
+    puts "Enter 1 for Hit, 2 for Stand".red
     @game = Game.new
     while(1)
       input = gets.chomp
